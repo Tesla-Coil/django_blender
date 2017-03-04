@@ -21,6 +21,7 @@ def get_blender(filepath=settings.BLENDER_FILE, new_instance=False):
         bpy.ops.wm.open_mainfile(filepath=filepath)
         preferences = bpy.context.user_preferences.addons['cycles'].preferences
         preferences.compute_device_type = settings.BLENDER_GPU_DEVICE if settings.BLENDER_USE_GPU else 'NONE'
+        bpy.context.scene.cycles.device = 'GPU' if settings.BLENDER_USE_GPU else 'CPU'
     return sys.modules['bpy']
 
 
